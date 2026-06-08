@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: diag-dashboard
+  labels:
+    app: diag-dashboard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: diag-dashboard
+  template:
+    metadata:
+      labels:
+        app: diag-dashboard
+    spec:
+      containers:
+      - name: dashboard
+        image: <YOUR_DOCKER_HUB_USERNAME>/diag-dashboard:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+          requests:
+            cpu: "100m"
+            memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: diag-dashboard-service
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 3000
+  selector:
+    app: diag-dashboard
