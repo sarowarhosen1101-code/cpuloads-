@@ -1,0 +1,6 @@
+{
+  "name": "System Resource Dashboard",
+  "description": "A production-ready dashboard displaying real-time CPU and memory metrics alongside a non-blocking asynchronous task execution engine.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
